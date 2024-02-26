@@ -6,7 +6,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "Eldrow",
+    "productName": "stoM",
     "version": "0.0.0"
   },
   "tauri": {
@@ -19,7 +19,7 @@
     },
     "windows": [
       {
-        "title": "eldrow",
+        "title": "stom",
         "width": 800,
         "height": 600
       }
