@@ -7,6 +7,8 @@ import '../styles/streak.css';
 <template>
   <div id="container">
     <Topbar game_playing="Streak"></Topbar>
-    <button @click="$router.push('/')">Go to menu</button>
+    <div id="container_body">
+      <p>Streak view</p>
+    </div>
   </div>
 </template>

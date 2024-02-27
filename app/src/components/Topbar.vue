@@ -6,7 +6,7 @@ import menu_button from '../components/Menu_button.vue';
 
 <template>
     <div id="container">
-        <span id="game_playing">{{game_playing}}</span>
+        <span id="game_playing">{{ game_playing }}</span>
         <timer id="timer"></timer>
         <menu_button id="menu_button"></menu_button>
     </div>

@@ -6,6 +6,8 @@ import '../styles/60sec.css';
 <template>
   <div id="container">
     <Topbar game_playing="60 secondes"></Topbar>
-    <button @click="$router.push('/')">Go to menu</button>
+    <div id="container_body">
+      <p>60 secondes view</p>
+    </div>
   </div>
 </template>
