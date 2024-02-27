@@ -1,0 +1,27 @@
+#container {
+    width: 100%;
+    height: 7.5%;
+    position: relative;
+}
+
+#game_playing {
+    position: absolute;
+    left: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+#timer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#menu_button {
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+}
