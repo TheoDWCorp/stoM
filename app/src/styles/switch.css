@@ -1,0 +1,43 @@
+#container_switch {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+#left_part {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 50%;
+    border: none;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+
+#right_part {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 50%;
+    border: none;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+
+#green_anim_div {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    border: solid 2px black;
+    border-radius: 5px;
+    background-color: green;
+    transition: ease-out 0.15s;
+}

@@ -1,14 +1,26 @@
 #container {
     width: 100%;
-    height: 7.5%;
+    height: 50px;
     position: relative;
 }
 
-#game_playing {
+#container_left{
     position: absolute;
-    left: 2%;
+    width: auto;
+    height: 100%;
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+#switch {
+    position: relative;
+    height: 30px;
+    width: 235px;
 }
 
 
@@ -21,7 +33,7 @@
 
 #menu_button {
     position: absolute;
-    right: 2%;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
 }
