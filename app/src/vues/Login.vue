@@ -1,5 +1,5 @@
 <script setup>
-import '../styles/login_register.css';
+import '../styles/login.css';
 import { ref, onMounted } from 'vue';
 
 
@@ -10,7 +10,7 @@ onMounted(() => {
 
 
 <template>
-	<div id="container_login_register">
+	<div id="container_login">
         <span>Email</span>
         <input type="text">
 
@@ -18,6 +18,8 @@ onMounted(() => {
         <input type="text">
 
         <button @click="$router.push('/Menu')">Login</button>
-        <button id="register_buttton" @click="$router.push('/Register')">Register</button>
+        <div id="wrapper_register_button">
+            <button id="register_buttton" @click="$router.push('/Register')">Register</button>
+        </div>
 	</div>
 </template>

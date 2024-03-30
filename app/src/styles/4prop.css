@@ -9,6 +9,8 @@
 }
 
 #container_fourProp > button {
-    width: 20%;
-    aspect-ratio: 1;
+    width: 30%;
+    aspect-ratio: 2;
+    border-radius: 10px;
+    font-size: 3rem;
 }

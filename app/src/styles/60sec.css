@@ -12,3 +12,12 @@
     justify-content: center;
     gap: 20px;
 }
+
+
+#score {
+    position: fixed;
+    top: 35px;
+    left: 50%;
+    font-size: 3rem;
+    transform: translate(-50%, -50%);
+}

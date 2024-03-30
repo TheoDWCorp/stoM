@@ -8,4 +8,11 @@
 #container_guess > input {
     width: 25%;
     aspect-ratio: 5;
+    font-size: 3rem;
+}
+
+
+#container_guess > input::placeholder {
+    color: black;
+    opacity: 0.5;
 }

@@ -18,20 +18,10 @@
     gap: 20px;
 }
 
-#container_left > span {
-    font-size: 40px;
-} 
 
 #switch {
     height: 75%;
     width: 400px;
-}
-
-#timer {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
 }
 
 
@@ -46,5 +36,10 @@
 }
 
 #container_right > button {
-    font-size: 24px;
+    font-size: 1.5rem;
+}
+
+#game_playing {
+    font-family: 'gfont_Poppins_ExtraBoldItalic', sans-serif;
+    font-size: 3rem;
 }

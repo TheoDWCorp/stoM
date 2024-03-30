@@ -1,42 +1,41 @@
 <script setup>
 import Topbar from '../components/Topbar.vue';
+import FourProp from '../components/FourProp.vue';
+import Guess from '../components/Guess.vue'
 import '../styles/60sec.css';
 import { ref, onMounted } from 'vue';
 
-const topbar_ref = ref(null);
+function switch_function(switchIsLeft) {
+	const FourProp = document.getElementById("FourProp")
+	const Guess = document.getElementById("Guess")
+	if (switchIsLeft) {
+		FourProp.style.opacity=1;
+		Guess.style.opacity=0;
+	} else {
+		FourProp.style.opacity=0;
+		Guess.style.opacity=1;
+	}
+}
 
-const get_switchIsLeft = ref(null);
-const anim_green = ref(null);
+
 
 onMounted(() => {
-    get_switchIsLeft.value = topbar_ref.value.get_switchIsLeft;
-    anim_green.value = topbar_ref.value.anim_green;
-    const switch_span = document.getElementById("switch_span");
-    if (get_switchIsLeft.value()) {
-      switch_span.innerText="switch is left";
-    } else {
-      switch_span.innerText="switch is right";
-    }
+    switch_function(true)
 })
-
-function button_click() {
-  anim_green.value();
-  if (get_switchIsLeft.value()) {
-      switch_span.innerText="switch is left";
-  } else {
-    switch_span.innerText="switch is right";
-  }
-}
 
 </script>
 
+
 <template>
-  <div id="container">
-    <Topbar ref="topbar_ref" game_playing="60 secondes"></Topbar>
-    <div id="container_body">
-      <p>60 secondes view</p>
-      <button @click="button_click">test switch</button>
-      <span id="switch_span"></span>
-    </div>
-  </div>
+	<div id="container">
+		<Topbar @switch_function="switch_function" game_playing="60 secondes"></Topbar>
+		<div id="container_body">
+      <span id="score">Score : 0</span>
+			<div id="container_word_to_guess">
+				<span>Dominique Mery</span>
+			</div>
+			<FourProp id="FourProp"></FourProp>
+			<Guess id="Guess"></Guess>
+		</div>
+	</div>
 </template>

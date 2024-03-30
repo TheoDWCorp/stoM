@@ -15,14 +15,10 @@
 }
 
 #container_word_to_guess {
-    height: 4rem;
-    width: max-content;
-    position: absolute;
-    top: 35%;
+    position: fixed;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 3rem 2rem 3rem 2rem;
-    box-sizing: border-box;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -31,14 +27,23 @@
 
 #container_word_to_guess > span {
     width: max-content;
-    font-size: 4rem;
+    font-size: 7rem;
 }
 
 #FourProp, #Guess {
     width: 80%;
     height: auto;
     position: absolute;
-    bottom: 10%;
+    bottom: 15%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, 50%);
+}
+
+
+#timer {
+    position: fixed;
+    top: 35px;
+    left: 50%;
+    font-size: 3rem;
+    transform: translate(-50%, -50%);
 }
