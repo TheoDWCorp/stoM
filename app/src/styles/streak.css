@@ -7,8 +7,38 @@
 
 #container_body {
     flex-grow: 1;
+    position: relative;
+}
+
+#container_body > div {
+    z-index: 1;
+}
+
+#container_word_to_guess {
+    height: 4rem;
+    width: max-content;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3rem 2rem 3rem 2rem;
+    box-sizing: border-box;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+#container_word_to_guess > span {
+    width: max-content;
+    font-size: 4rem;
+}
+
+#FourProp, #Guess {
+    width: 80%;
+    height: auto;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}

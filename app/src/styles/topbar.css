@@ -1,7 +1,8 @@
-#container {
+#container_topbar {
     width: 100%;
-    height: 50px;
+    height: 70px;
     position: relative;
+    z-index: 2;
 }
 
 #container_left{
@@ -17,12 +18,14 @@
     gap: 20px;
 }
 
-#switch {
-    position: relative;
-    height: 30px;
-    width: 235px;
-}
+#container_left > span {
+    font-size: 40px;
+} 
 
+#switch {
+    height: 75%;
+    width: 400px;
+}
 
 #timer {
     position: absolute;
@@ -31,9 +34,17 @@
     transform: translate(-50%, -50%);
 }
 
-#menu_button {
+
+#container_right {
+    display: flex;
+    flex-direction: row-reverse;
     position: absolute;
+    gap: 20px;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
+}
+
+#container_right > button {
+    font-size: 24px;
 }

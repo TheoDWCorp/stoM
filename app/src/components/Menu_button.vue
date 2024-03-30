@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <button @click="$router.push('/')">Menu</button>
+    <button @click="$router.push('/Menu')">Menu</button>
 </template>
 
 <style scoped src="../styles/menu_button.css">

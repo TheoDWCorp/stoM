@@ -1,0 +1,11 @@
+#container_guess {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#container_guess > input {
+    width: 25%;
+    aspect-ratio: 5;
+}

@@ -1,0 +1,24 @@
+#container_login_register {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#container_login_register > input {
+    margin-bottom: 20px;
+    
+}
+
+
+#register_buttton {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+

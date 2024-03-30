@@ -5,7 +5,9 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 10px;
+    background-color: #c8ba9f;
+    border: 5px solid #c8ba9f;
 }
 
 #left_part {
@@ -36,8 +38,12 @@
     left: 0;
     height: 100%;
     width: 50%;
-    border: solid 2px black;
     border-radius: 5px;
-    background-color: green;
+    background-color: #FAEED1;
     transition: ease-out 0.15s;
+}
+
+
+button {
+    font-size: 24px;
 }
