@@ -1,4 +1,5 @@
 <script setup>
+import Timer from '../components/Timer.vue'
 import Topbar from '../components/Topbar.vue';
 import FourProp from '../components/FourProp.vue';
 import Guess from '../components/Guess.vue'
@@ -30,7 +31,7 @@ onMounted(() => {
 	<div id="container">
 		<Topbar @switch_function="switch_function" game_playing="60 secondes"></Topbar>
 		<div id="container_body">
-      <span id="score">Score : 0</span>
+      <Timer id="timer"></Timer>
 			<div id="container_word_to_guess">
 				<span>Dominique Mery</span>
 			</div>
