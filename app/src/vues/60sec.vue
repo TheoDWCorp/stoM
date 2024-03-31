@@ -23,7 +23,6 @@ function switch_function(switchIsLeft) {
 }
 
 
-
 onMounted(() => {
     switch_function(true)
 })
@@ -37,7 +36,7 @@ onMounted(() => {
 		<div id="container_body">
       <Timer id="timer"></Timer>
 			<div id="container_word_to_guess">
-				<span>Dominique Mery</span>
+				<span></span>
 			</div>
 			<Guess id="Guess"></Guess>
 			<FourProp id="FourProp"></FourProp>

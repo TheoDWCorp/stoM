@@ -10,10 +10,10 @@ function guess_function(event) {
 <template>
     <div>
         <div id="container_fourProp">
-            <button @click="guess_function">test1</button>
-            <button @click="guess_function">test2</button>
-            <button @click="guess_function">test3</button>
-            <button @click="guess_function">test4</button>
+            <button @click="guess_function"></button>
+            <button @click="guess_function"></button>
+            <button @click="guess_function"></button>
+            <button @click="guess_function"></button>
         </div>
     </div>
 </template>
