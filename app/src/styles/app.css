@@ -39,7 +39,7 @@ body {
 button, span, input {
   font-family: 'gfont_Poppins_Medium', sans-serif;
   font-size: 32px;
-  line-height: 32px;
+  line-height: 40px;
   font-weight: 400;
   box-sizing: border-box;
   user-select: none;
