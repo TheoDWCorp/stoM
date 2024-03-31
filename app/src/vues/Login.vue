@@ -5,10 +5,6 @@ import Password_input from '../components/Password_input.vue';
 
 
 
-
-onMounted(() => {
-})
-
 </script>
 
 

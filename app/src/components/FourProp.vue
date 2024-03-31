@@ -10,10 +10,9 @@ function guess_function(event) {
 <template>
     <div>
         <div id="container_fourProp">
-            <button @click="guess_function"></button>
-            <button @click="guess_function"></button>
-            <button @click="guess_function"></button>
-            <button @click="guess_function"></button>
+            <div v-for="index in 4" @click="guess_function" class="fourProp_wrapper">
+                <button></button>
+            </div>
         </div>
     </div>
 </template>

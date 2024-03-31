@@ -6,11 +6,19 @@
     flex-direction: row;
     justify-content: center;
     gap: 7%;
+    position: relative;
 }
 
-#container_fourProp > button {
+.fourProp_wrapper {
     width: 30%;
     aspect-ratio: 2;
+}
+
+
+
+.fourProp_wrapper > button {
+    height: 100%;
+    width: 100%;
     border-radius: 10px;
     font-size: 3rem;
 }

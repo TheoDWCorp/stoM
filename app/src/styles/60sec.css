@@ -14,7 +14,27 @@
 }
 
 
-#timer {
+#timer, #times_up {
+    position: fixed;
+    top: calc(35px + 3rem);
+    left: 50%;
+    font-size: 3rem;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#times_up {
+    opacity: 0;
+}
+
+#timer > span {
+    text-align: center;
+    width: 1.5rem;
+}
+
+#score {
     position: fixed;
     top: 35px;
     left: 50%;

@@ -66,7 +66,7 @@ function nextWord() {
 	shuffleArray(cur_words);
 	const fourProp_childs = document.getElementById("container_fourProp").children;
 	for (let i=0; i<4; i++) {
-		fourProp_childs[i].textContent=standardiseWord(cur_words[i]);
+		fourProp_childs[i].children[0].textContent=standardiseWord(cur_words[i]);
 	}
 	index_words++;
 }
