@@ -43,11 +43,13 @@ button, span, input {
   font-weight: 400;
   box-sizing: border-box;
   user-select: none;
+  z-index: 1;
 }
 
 button, input {
   padding: 0.5rem 1rem 0.5rem 1rem;
   color: black;
+  transition: 0.1s ease-out;
 
   background-color: #fef6e3;
   border: none;
@@ -58,7 +60,7 @@ button, input {
 
 button:hover {
   transform: scale(1.1);
-  transition: 0.1s ease-out;
+  cursor: pointer;
 }
 
 
@@ -66,12 +68,4 @@ input {
   text-align: center;
 }
 
-button:hover {
-  cursor: pointer;
-}
-
-
-button, span, input {
-  z-index: 1;
-}
 

@@ -35,8 +35,8 @@ onMounted(() => {
 			<div id="container_word_to_guess">
 				<span>Dominique Mery</span>
 			</div>
-			<FourProp id="FourProp"></FourProp>
 			<Guess id="Guess"></Guess>
+			<FourProp id="FourProp"></FourProp>
 		</div>
 	</div>
 </template>
