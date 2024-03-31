@@ -9,9 +9,9 @@
 
 
 
-#container_register > input {
+#container_register > input, #container_register > div {
     margin-bottom: 20px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 

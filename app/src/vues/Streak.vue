@@ -10,10 +10,14 @@ function switch_function(switchIsLeft) {
 	const Guess = document.getElementById("Guess")
 	if (switchIsLeft) {
 		FourProp.style.opacity=1;
+		FourProp.style.zIndex=1;
 		Guess.style.opacity=0;
+		Guess.style.zIndex=0;
 	} else {
 		FourProp.style.opacity=0;
+		FourProp.style.zIndex=0;
 		Guess.style.opacity=1;
+		Guess.style.zIndex=1;
 	}
 }
 
