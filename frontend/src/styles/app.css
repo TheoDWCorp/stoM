@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'gfont_Poppins_ExtraBoldItalic';
+  src: url('../assets/fonts/Poppins/Poppins-ExtraBoldItalic.ttf');
+}
+
+@font-face {
+  font-family: 'gfont_Poppins_Medium';
+  src: url('../assets/fonts/Poppins/Poppins-Bold.ttf');
+}
+
+:root {
+  font-family: 'gfont_Poppins_Medium', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  user-select: none;
+
+  color: #0f0f0f;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+}
+
+button, span, input {
+  font-family: 'gfont_Poppins_Medium', sans-serif;
+  font-size: 32px;
+  line-height: 32px;
+  font-weight: 400;
+  box-sizing: border-box;
+  user-select: none;
+  z-index: 1;
+}
+
+button, input {
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  color: black;
+  transition: 0.1s ease-out;
+
+  background-color: #fef6e3;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+}
+
+button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+
+input {
+  text-align: center;
+}

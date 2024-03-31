@@ -1,0 +1,54 @@
+#container_switch {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #ab9973;
+    border: 5px solid #ab9973;
+}
+
+#left_part {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 50%;
+    border: none;
+    background-color: transparent;
+    border-radius: 5px 0 0 5px;
+}
+
+
+#right_part {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 50%;
+    border: none;
+    background-color: transparent;
+    border-radius: 0 5px 5px 0;
+}
+
+
+#green_anim_div {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    border-radius: 5px;
+    background-color: #fef6e3;
+    transition: ease-out 0.15s;
+}
+
+
+#container_switch > button {
+    font-size: 24px;
+    padding: 0.5rem;
+}
+
+#container_switch > button:hover {
+    transform: none;
+}

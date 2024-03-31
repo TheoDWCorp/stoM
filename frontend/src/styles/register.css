@@ -1,0 +1,20 @@
+#container_register {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#container_register > input, #container_register > div {
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+
+#container_register > button {
+    margin-top: 40px;
+}

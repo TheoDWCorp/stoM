@@ -1,0 +1,24 @@
+#container_login {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#container_login > input, #container_login > div {
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+
+#wrapper_register_button {
+    position: absolute;
+    z-index: 1;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}

@@ -1,0 +1,49 @@
+#container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#container_body {
+    flex-grow: 1;
+    position: relative;
+}
+
+#container_body > div {
+    z-index: 1;
+}
+
+#container_word_to_guess {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#container_word_to_guess > span {
+    width: max-content;
+    font-size: 7rem;
+}
+
+#FourProp, #Guess {
+    width: 80%;
+    height: auto;
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+
+#score {
+    position: fixed;
+    top: 35px;
+    left: 50%;
+    font-size: 3rem;
+    transform: translate(-50%, -50%);
+}
