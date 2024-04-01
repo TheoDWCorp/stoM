@@ -2,14 +2,33 @@
 import Topbar from '../components/Topbar.vue';
 import FourProp from '../components/FourProp.vue';
 import Guess from '../components/Guess.vue'
+import History from '../components/History.vue';
 import '../styles/streak.css';
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router'
+
+const router = useRouter();
+
+let words = [];
+let index_words=0;
+let cur_answer="";
+let score = 0;
+let life=3;
+let life_div;
+const history= ref(null);
+history.value=[];
 
 
-var words = [];
-var index_words=0;
-var cur_answer="";
-var score = 0;
+function setup_game() {
+	score=0;
+	life=3;
+	history.value=[];
+	const score_span = document.getElementById("score");
+	score_span.textContent = "Score : "+score.toString();
+	life_div.textContent="Life : "+life.toString();
+	updateWords();
+}
+
 
 function switch_function(switchIsLeft) {
 	const FourProp = document.getElementById("FourProp")
@@ -25,10 +44,7 @@ function switch_function(switchIsLeft) {
 		Guess.style.opacity=1;
 		Guess.style.zIndex=1;
 	}
-	score=0;
-	const score_span = document.getElementById("score");
-	score_span.textContent = "Score : "+score.toString();
-	updateWords();
+	setup_game();
 }
 
 async function fetchWords() {
@@ -72,11 +88,34 @@ function nextWord() {
 }
 
 
-function guess_function(answer) {
+
+function guess_function(event, answer) {
+	history.value.push(cur_answer + " " + answer);
+	let button_pressed = event.target;
+	if (button_pressed.nodeName=="DIV") {
+		button_pressed=button_pressed.children[0];
+	}
+	if (life==0) setup_game();
 	if (standardiseWord(answer)==cur_answer) {
 		score++;
 		const score_span = document.getElementById("score");
 		score_span.textContent = "Score : "+score.toString();
+
+		button_pressed.style.animation="anim_vert 0.35s";
+		setTimeout(() => {
+			button_pressed.style.animation = "";
+		}, 350);
+	} else {
+		life--;
+		life_div.textContent="Life : "+life.toString();
+		if (life==0) {
+			show_history();
+		}
+		
+		button_pressed.style.animation="anim_rouge 0.35s";
+		setTimeout(() => {
+			button_pressed.style.animation = "";
+		}, 350);
 	}
 	nextWord();
 
@@ -94,7 +133,20 @@ function standardiseWord(str) {
 	return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[-_]/, ' ').toLowerCase();
 }
 
+
+function show_history() {
+    const container_history = document.getElementById("container_history");
+    container_history.style.zIndex=3;
+}
+
+
+function quit_function(next_view) {
+	router.push(next_view);
+}
+
+
 onMounted(() => {
+	life_div = document.getElementById("life");
     switch_function(true);
 	updateWords();
 })
@@ -104,9 +156,11 @@ onMounted(() => {
 
 <template>
 	<div id="container">
-		<Topbar @switch_function="switch_function" game_playing="Streak"></Topbar>
+		<History :history="history"></History>
+		<Topbar @switch_function="switch_function" @quit_function="quit_function" game_playing="Streak"></Topbar>
 		<div id="container_body">
 			<span id="score">Score : 0</span>
+			<span id="life">Life : 3</span>
 			<div id="container_word_to_guess">
 				<span></span>
 			</div>

@@ -14,6 +14,9 @@ onMounted(() => {
 		<span>Email</span>
 		<input type="text">
 
+		<span>Pseudo</span>
+		<input type="text">
+
 		<span>Password</span>
 		<Password_input password_id="password"></Password_input>
 

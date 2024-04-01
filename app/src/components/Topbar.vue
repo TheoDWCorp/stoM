@@ -2,11 +2,20 @@
 import Menu_button from '../components/Menu_button.vue';
 import Switch from './Switch.vue';
 const props = defineProps(['game_playing']);
-const emit = defineEmits(['switch_function'])
+const emit = defineEmits(['switch_function', 'quit_function'])
 
 
 function switch_function(switchIsLeft) {
     emit('switch_function', switchIsLeft)
+}
+
+function show_history() {
+    const container_history = document.getElementById("container_history");
+    container_history.style.zIndex=3;
+}
+
+function quit_function(next_view) {
+    emit("quit_function", next_view);
 }
 
 </script>
@@ -18,8 +27,9 @@ function switch_function(switchIsLeft) {
             <Switch @switch_function="switch_function" id="switch" left_str="4 propositions" right_str="Guess"></Switch>
         </div>
         <div id="container_right">
-            <Menu_button id="menu_button"></Menu_button>
-            <button id="leaderboard_button" @click="$router.push('/Leaderboard/'+props.game_playing)">Leaderboard</button>
+            <Menu_button @quit_function="quit_function" id="menu_button"></Menu_button>
+            <button id="leaderboard_button" @click="quit_function('./Leaderboard/'+props.game_playing)">Leaderboard</button>
+            <button @click="show_history">History</button>
         </div>
     </div>
 </template>

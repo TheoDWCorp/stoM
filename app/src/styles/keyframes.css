@@ -1,0 +1,35 @@
+@keyframes anim_vert {
+    0% {
+        background-color: #fef6e3;
+    }
+    20% {
+        background-color: rgb(0, 202, 0);
+    }
+    100% {
+        background-color: #fef6e3;
+    }
+}
+
+@keyframes anim_rouge {
+    0% {
+        background-color: #fef6e3;
+    }
+    20% {
+        background-color: red;
+    }
+    100% {
+        background-color: #fef6e3;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

@@ -47,3 +47,11 @@
     font-size: 3rem;
     transform: translate(-50%, -50%);
 }
+
+#life {
+    position: fixed;
+    top: calc(35px + 3rem);
+    left: 50%;
+    font-size: 2rem;
+    transform: translate(-50%, -50%);
+}
