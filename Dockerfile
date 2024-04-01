@@ -10,11 +10,12 @@ RUN npm install
 
 EXPOSE 3002
 
-
 RUN mkdir /app/db
+
+RUN touch /app/db/database.sqlite
 
 VOLUME /app/db
 
-RUN node backend/init_db.js
+RUN node /app/backend/init_db.js
 
 CMD node backend/app.js

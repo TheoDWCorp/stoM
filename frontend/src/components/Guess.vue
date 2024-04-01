@@ -3,7 +3,7 @@ const emit = defineEmits(['guess_function']);
 
 function guess_function(event) {
     if (event.key!="Enter") return;
-    emit('guess_function', event.target.value);
+    emit('guess_function', event, event.target.value);
     event.target.value="";
 }
 

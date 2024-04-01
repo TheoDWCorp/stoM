@@ -2,7 +2,7 @@
 const emit = defineEmits(['guess_function']);
 
 function guess_function(event) {
-    emit("guess_function", event.target.textContent);
+    emit("guess_function", event, event.target.textContent);
 }
 
 </script>

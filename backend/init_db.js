@@ -9,19 +9,20 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
       console.error(err.message)
       throw err
     }else{
-        console.log('Connected to the SQLite database.')
+        console.log('Creating tables...')
         let create_user = '\
         CREATE TABLE IF NOT EXISTS account (\
         username TEXT NOT NULL PRIMARY KEY,\
         password TEXT NOT NULL,\
-        elo_60 INTEGER,\
-        elo_streak INTEGER\
+        score_60_4 INTEGER,\
+        score_60_guess INTEGER,\
+        score_streak_4 INTEGER,\
+        score_streak_guess INTEGER\
         )';
         let create_words = "\
         CREATE TABLE IF NOT EXISTS words (\
         word TEXT NOT NULL,\
-        mot TEXT NOT NULL,\
-        elo INTEGER\
+        mot TEXT NOT NULL\
         )";
         
         db.run(create_user,
@@ -29,12 +30,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             if (err) {
                 // Table already created
             }else{
-                // Table just created, creating some rows
-                /*
-                let insert = 'INSERT INTO account (username, password, elo_60, elo_streak) VALUES (?,?,0,0)';
-                db.run(insert, ["admin","admin"])
-                db.run(insert, ["ekip","ekip"])
-                */
+
             }
         });
         db.run(create_words,
@@ -42,30 +38,31 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
               if (err) {
                   // Table already created
               }else{
-  
+                console.log('Inserting data into database...');
+                // Read the data from data.txt
+                fs.readFile('/app/database/data.txt', 'utf8', (err, data) => {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+
+                    // Split the data into an array of words
+                    const words = data.split('\n');
+                    
+
+                    // Insert each word into the words table
+                    const insertWord = 'INSERT INTO words (word, mot) VALUES (?, ?)';
+                    words.forEach((word) => {
+                        let [mot,trad] = word.split(',');
+                        mot = mot.trim();
+                        trad = trad.trim();
+                        db.run(insertWord, [trad, mot]);
+                    });
+                });
               }
           }); 
     }
+    
   });
 
 
-// Read the data from data.txt
-fs.readFile('/home/to/wd/stoM/database/data.txt', 'utf8', (err, data) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
-
-    // Split the data into an array of words
-    const words = data.split('\n');
-    
-
-    // Insert each word into the words table
-    const insertWord = 'INSERT INTO words (word, mot, elo) VALUES (?, ?, 0)';
-    words.forEach((word) => {
-        let [mot,trad] = word.split(',');
-        mot = mot.trim();
-        trad = trad.trim();
-        db.run(insertWord, [trad, mot]);
-    });
-});

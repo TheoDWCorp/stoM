@@ -1,5 +1,4 @@
 node-modules
-data.txt
 Dockerfile
-database
+database/database.sqlite
 .dockerignore
