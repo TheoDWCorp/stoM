@@ -28,7 +28,7 @@
     #DED0B6 46% 55%,#FAEED1 56% 65%,#DED0B6 66% 75%,#FAEED1 76% 85%,#DED0B6 86% 95%,
     #0000 90%);
     background-repeat: no-repeat;
-    transition: 0.1s ease-out;
+    transition: 0.05s ease-out;
 }
 
 .circle:hover {

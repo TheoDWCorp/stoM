@@ -1,14 +1,18 @@
 <script setup>
+const emit = defineEmits(['guess_function']);
+
+function guess_function(event) {
+    emit("guess_function", event.target.textContent);
+}
 
 </script>
 
 <template>
     <div>
         <div id="container_fourProp">
-            <button>test1</button>
-            <button>test2</button>
-            <button>test3</button>
-            <button>test4</button>
+            <div v-for="index in 4" @click="guess_function" class="fourProp_wrapper">
+                <button></button>
+            </div>
         </div>
     </div>
 </template>

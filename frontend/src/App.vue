@@ -4,6 +4,6 @@ import Background from './components/Background.vue';
 </script>
 
 <template>
-  <router-view />
-  <Background></Background>
+	<router-view />
+	<Background></Background>
 </template>

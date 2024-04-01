@@ -1,7 +1,13 @@
 
 
 <template>
-    <span>00:00</span>
+    <div>
+        <span>6</span>
+        <span>0</span>
+        <span>:</span>
+        <span>0</span>
+        <span>0</span>
+    </div>
 </template>
 
 <style scoped src="../styles/timer.css">

@@ -6,7 +6,7 @@
 
 
 #container_guess > input {
-    width: 25%;
+    width: 400px;
     aspect-ratio: 5;
     font-size: 3rem;
 }

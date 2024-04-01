@@ -5,6 +5,12 @@ import Guess from '../components/Guess.vue'
 import '../styles/streak.css';
 import { ref, onMounted } from 'vue';
 
+
+var words = [];
+var index_words=0;
+var cur_answer="";
+var score = 0;
+
 function switch_function(switchIsLeft) {
 	const FourProp = document.getElementById("FourProp")
 	const Guess = document.getElementById("Guess")
@@ -19,12 +25,78 @@ function switch_function(switchIsLeft) {
 		Guess.style.opacity=1;
 		Guess.style.zIndex=1;
 	}
+	score=0;
+	const score_span = document.getElementById("score");
+	score_span.textContent = "Score : "+score.toString();
+	updateWords();
+}
+
+async function fetchWords() {
+	try {
+		const response = await fetch('https://raw.githubusercontent.com/theoFromArdeche/temp/main/test.json');
+		const wordsData = await response.json();
+		return wordsData;
+	} catch (error) {
+		console.error('Error fetching color names:', error);
+		return [];
+	}
 }
 
 
+async function updateWords() {
+	const wordsPromise = await fetchWords();
+	words = wordsPromise;
+	index_words=0;
+
+	nextWord();
+}
+
+
+function nextWord() {
+	if (index_words==words.length) {
+		updateWords();
+		return;
+	}
+
+	const word_to_guess = document.querySelector("#container_word_to_guess > span");
+	word_to_guess.textContent = words[index_words][0];
+	cur_answer = standardiseWord(words[index_words][1]);
+
+	const cur_words=words[index_words].slice(1);
+	shuffleArray(cur_words);
+	const fourProp_childs = document.getElementById("container_fourProp").children;
+	for (let i=0; i<4; i++) {
+		fourProp_childs[i].children[0].textContent=standardiseWord(cur_words[i]);
+	}
+	index_words++;
+}
+
+
+function guess_function(answer) {
+	if (standardiseWord(answer)==cur_answer) {
+		score++;
+		const score_span = document.getElementById("score");
+		score_span.textContent = "Score : "+score.toString();
+	}
+	nextWord();
+
+}
+
+function shuffleArray(array) {
+	for (let i = array.length - 1; i > 0; i--) {
+	const j = Math.floor(Math.random() * (i + 1));
+	[array[i], array[j]] = [array[j], array[i]];
+	}
+}
+
+
+function standardiseWord(str) {
+	return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[-_]/, ' ').toLowerCase();
+}
 
 onMounted(() => {
-    switch_function(true)
+    switch_function(true);
+	updateWords();
 })
 
 </script>
@@ -36,10 +108,10 @@ onMounted(() => {
 		<div id="container_body">
 			<span id="score">Score : 0</span>
 			<div id="container_word_to_guess">
-				<span>Dominique Mery</span>
+				<span></span>
 			</div>
-			<Guess id="Guess"></Guess>
-			<FourProp id="FourProp"></FourProp>
+			<Guess @guess_function="guess_function" id="Guess"></Guess>
+			<FourProp @guess_function="guess_function" id="FourProp"></FourProp>
 		</div>
 	</div>
 </template>
