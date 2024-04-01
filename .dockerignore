@@ -1,0 +1,5 @@
+node-modules
+data.txt
+Dockerfile
+database
+.dockerignore
