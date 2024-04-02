@@ -5,10 +5,13 @@ import FourProp from '../components/FourProp.vue';
 import Guess from '../components/Guess.vue'
 import History from '../components/History.vue';
 import '../styles/60sec.css';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex';
 
 const router = useRouter();
+const store = useStore();
+const pseudo = computed(() => store.state.pseudo);
 
 
 let words = [];
@@ -210,6 +213,7 @@ function updateTimer() {
 		times_up_span.style.opacity=1;
 		time=[-1,-1,-1,-1];
 		show_history();
+		updateScore();
 		for (let i=0; i<index_bulles_anim; i++) {
 			bulles_anim[i].style.animation="";
 		}
@@ -230,6 +234,18 @@ function updateTimer() {
 	timer_div.children[1].textContent=time[1];
 	timer_div.children[3].textContent=time[2];
 	timer_div.children[4].textContent=time[3];
+}
+
+
+
+async function updateScore() {
+	let path="updateScore60Guess";
+	if (flag_4prop) path="updateScore604";
+	try {
+		const response = await fetch('http://18.215.51.7/api/'+ path + '/' + pseudo.value + '/' + score.toString());
+	} catch (error) {
+		console.error('Error updating score:', error);
+	}
 }
 
 

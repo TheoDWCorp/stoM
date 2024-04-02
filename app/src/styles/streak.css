@@ -17,14 +17,7 @@
 
 
 
-#FourProp, #Guess {
-    width: 90%;
-    height: auto;
-    position: absolute;
-    bottom: 15%;
-    left: 50%;
-    transform: translate(-50%, 50%);
-}
+
 
 
 #score {
@@ -44,6 +37,32 @@
 }
 
 
+#container_word_to_guess {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media (max-height:700px){
+    #container_word_to_guess {
+        top: 45%;
+    }
+
+}
+
+@media (min-height:700px){
+    #container_word_to_guess {
+        top: 30%;
+    }
+
+}
+
+
 @media (max-width:1200px){
     #score {
         top: 2.5rem;
@@ -55,20 +74,21 @@
 
     #container_word_to_guess > span {
         width: max-content;
-        font-size: 5rem;
+        font-size: 3rem;
     }
-
-    #container_word_to_guess {
+    
+    
+    #FourProp, #Guess {
+        width: 100%;
+        height: 30%;
         position: absolute;
-        top: 55%;
+        bottom: 25%;
         left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        transform: translate(-50%, 50%);
     }
 }
+
+
 
 @media (min-width:1200px){
     #score {
@@ -83,15 +103,14 @@
         width: max-content;
         font-size: 7rem;
     }
+    
 
-    #container_word_to_guess {
-        position: fixed;
-        top: 45%;
+    #FourProp, #Guess {
+        width: 90%;
+        height: auto;
+        position: absolute;
+        bottom: 15%;
         left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        transform: translate(-50%, 50%);
     }
 }

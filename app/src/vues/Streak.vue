@@ -4,10 +4,14 @@ import FourProp from '../components/FourProp.vue';
 import Guess from '../components/Guess.vue'
 import History from '../components/History.vue';
 import '../styles/streak.css';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex';
 
 const router = useRouter();
+const store = useStore();
+const pseudo = computed(() => store.state.pseudo);
+
 
 let words = [];
 let index_words=0;
@@ -137,6 +141,7 @@ function guess_function(event, answer) {
 		life_div.textContent="Life : "+life.toString();
 		if (life==0) {
 			show_history();
+			updateScore();
 		}
 	}
 	score_span.textContent = "Score : "+score.toString();
@@ -145,6 +150,18 @@ function guess_function(event, answer) {
 	}, 350);
 	
 	nextWord();
+}
+
+
+async function updateScore() {
+	let path="updateScoreStreakGuess";
+	if (flag_4prop) path="updateScoreStreak4";
+	console.log('http://18.215.51.7/api/'+ path + '/' + pseudo.value + '/' + score.toString());
+	try {
+		const response = await fetch('http://18.215.51.7/api/'+ path + '/' + pseudo.value + '/' + score.toString());
+	} catch (error) {
+		console.error('Error updating score:', error);
+	}
 }
 
 function shuffleArray(array) {

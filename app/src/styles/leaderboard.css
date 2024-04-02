@@ -26,11 +26,13 @@
 
 
 #leaderboard_body {
+    position: relative;
     flex-grow: 1;
     width: 100%;
     border-radius: 20px;
     background-color: #fef6e3;
     border: 5px solid #ab9973;
+    overflow: scroll;
 }
 
 
@@ -52,4 +54,24 @@
     #leaderboard_top {
         width: 100%;
     }
+}
+
+
+#container_4prop, #container_guess {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#container_4prop > div, #container_guess > div {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+
+#container_guess {
+    opacity: 0;
 }

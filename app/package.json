@@ -16,8 +16,13 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/vue-fontawesome": "^3.0.6",
     "@tauri-apps/api": "^1",
+    "argon2": "^0.40.1",
+    "bcryptjs": "^2.4.3",
+    "js-cookie": "^3.0.5",
     "vue": "^3.3.4",
-    "vue-router": "^4.3.0"
+    "vue-cookies": "^1.8.3",
+    "vue-router": "^4.3.0",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1",
