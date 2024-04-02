@@ -1,39 +1,6 @@
-#container_topbar {
-    width: 100%;
-    height: 70px;
-    position: relative;
-    z-index: 2;
-}
-
-#container_left{
-    position: absolute;
-    width: auto;
-    height: 100%;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-}
 
 
-#switch {
-    height: 75%;
-    width: 400px;
-}
 
-
-#container_right {
-    display: flex;
-    flex-direction: row-reverse;
-    position: absolute;
-    gap: 20px;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-}
 
 #container_right > button {
     font-size: 1.5rem;
@@ -42,4 +9,72 @@
 #game_playing {
     font-family: 'gfont_Poppins_ExtraBoldItalic', sans-serif;
     font-size: 3rem;
+}
+
+
+
+
+@media (max-width:1200px){
+    #container_topbar {
+        width: 100%;
+        height: fit-content;
+        position: relative;
+        z-index: 2;
+    }
+
+    #switch {
+        padding-top: 5px;
+        padding-left: 5%;
+        width: 90%;
+    }
+
+    #container_right {
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        gap: 20px;
+        left: 0;
+        right: 0;
+    }
+}
+
+
+@media (min-width:1200px){
+    #container_topbar {
+        width: 100%;
+        height: 70px;
+        position: relative;
+        z-index: 2;
+    }
+    #container_left{
+        position: absolute;
+        width: auto;
+        height: 100%;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    
+    #switch {
+        height: 75%;
+        width: 400px;
+    }
+    
+    
+    #container_right {
+        display: flex;
+        flex-direction: row-reverse;
+        position: absolute;
+        gap: 20px;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }

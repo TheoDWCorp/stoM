@@ -16,12 +16,15 @@ let index_words=0;
 let cur_answer="";
 let score = 0;
 let time = [-1,-1,-1,-1];
+let starting_time=Date.now()/1000;
 let timerInterval;
 let timer_div;
 let time_anim=60;
 let bulles_anim=[];
 let index_bulles_anim=0;
 let max_index_bulles=0;
+const correct_answer_score=2;
+const incorrect_answer_score=-1;
 const history= ref(null);
 history.value=[];
 
@@ -30,8 +33,10 @@ function setup_game() {
 	for (let i=0; i<index_bulles_anim; i++) {
 		bulles_anim[i].style.animation="";
 	}
-	time = [6,0,0,1];
-	updateTimer()
+	timer_div.children[0].textContent=6;
+	timer_div.children[1].textContent=0;
+	timer_div.children[3].textContent=0;
+	timer_div.children[4].textContent=0;
 	time = [-1,-1,-1,-1];
 	bulles_anim=[];
 	time_anim=60;
@@ -91,8 +96,11 @@ async function updateWords() {
 	const wordsPromise = await fetchWords();
 	words = wordsPromise;
 	index_words=0;
-
-	nextWord();
+	if (words.length==0) {
+		setTimeout(() => {
+			updateWords();
+		}, 5000);
+	} else nextWord();
 }
 
 
@@ -117,6 +125,9 @@ function nextWord() {
 
 
 function guess_function(event, answer) {
+	if (index_words==0) return;
+	const real_time=60-Date.now()/1000+starting_time;
+	if (real_time<=0&&time[0]!=-1) return;
 	let button_pressed = event.target;
 	if (button_pressed.nodeName=="DIV") {
 		button_pressed=button_pressed.children[0];
@@ -124,26 +135,27 @@ function guess_function(event, answer) {
 	if (time[0]==-1) {
 		if (index_words!=1) setup_game();
 		time = [6,0,0,0];
+		starting_time=Date.now()/1000;
 		timerInterval = setInterval(updateTimer, 10);
 		history.value=[];
 	}
+
+	const score_span = document.getElementById("score");
 	if (standardiseWord(answer)==cur_answer) {
-		score++;
-		const score_span = document.getElementById("score");
-		score_span.textContent = "Score : "+score.toString();
+		score+=correct_answer_score;
 		button_pressed.style.animation="anim_vert 0.35s";
-		setTimeout(() => {
-			button_pressed.style.animation = "";
-		}, 350);
 	} else {
+		score+=incorrect_answer_score;
 		button_pressed.style.animation="anim_rouge 0.35s";
-		setTimeout(() => {
-			button_pressed.style.animation = "";
-		}, 350);
 	}
+	score_span.textContent = "Score : "+score.toString();
+	setTimeout(() => {
+		button_pressed.style.animation = "";
+	}, 350);
+
+	
 	history.value.push(cur_answer + " " + answer);
 	nextWord();
-
 }
 
 function shuffleArray(array) {
@@ -168,7 +180,8 @@ function updateAnim(cur_time) {
 }
 
 function updateTimer() {
-	if (time.every((elem) => elem == 0)) {
+	const real_time=60-Date.now()/1000+starting_time;
+	if (real_time<=0) {
 		clearInterval(timerInterval);
 		timer_div.style.opacity=0;
 		const times_up_span = document.getElementById("times_up");
@@ -181,24 +194,14 @@ function updateTimer() {
 		return;
 	}
 	if (time[3]==0) {
-		if (time[2]==0) {
-			if (time[1]==0) {
-				time[0]--;
-				time[1]=9;
-			} else {
-				time[1]--;
-			}
-			time[2]=9;
-			time[3]=9;
-		} else {
-			time[2]--;
-			time[3]=9;
-		}
+		time[0]=Math.floor(real_time/10);
+		time[1]=Math.floor(real_time%10);
+		time[2]=Math.floor(real_time*10%10);
+		time[3]=9;
 	} else time[3]--;
 
-	let cur_time=time[0]*10+time[1]+time[2]/10+time[3]/100;
-	if (cur_time<time_anim) {
-		updateAnim(cur_time);
+	if (real_time<time_anim) {
+		updateAnim(real_time);
 	}
 
 	timer_div.children[0].textContent=time[0];
@@ -211,6 +214,7 @@ function updateTimer() {
 
 function show_history() {
     const container_history = document.getElementById("container_history");
+	container_history.style.opacity=1;
     container_history.style.zIndex=3;
 }
 

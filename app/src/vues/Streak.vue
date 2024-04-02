@@ -15,6 +15,8 @@ let cur_answer="";
 let score = 0;
 let life=3;
 let life_div;
+const correct_answer_score=2;
+const incorrect_answer_score=-1;
 const history= ref(null);
 history.value=[];
 
@@ -53,7 +55,7 @@ async function fetchWords() {
 		const wordsData = await response.json();
 		return wordsData;
 	} catch (error) {
-		console.error('Error fetching color names:', error);
+		console.error('Error fetching words:', error);
 		return [];
 	}
 }
@@ -63,8 +65,11 @@ async function updateWords() {
 	const wordsPromise = await fetchWords();
 	words = wordsPromise;
 	index_words=0;
-
-	nextWord();
+	if (words.length==0) {
+		setTimeout(() => {
+			updateWords();
+		}, 5000);
+	} else nextWord();
 }
 
 
@@ -90,35 +95,35 @@ function nextWord() {
 
 
 function guess_function(event, answer) {
+	if (index_words==0) return;
 	history.value.push(cur_answer + " " + answer);
 	let button_pressed = event.target;
 	if (button_pressed.nodeName=="DIV") {
 		button_pressed=button_pressed.children[0];
 	}
 	if (life==0) setup_game();
+	
+	const score_span = document.getElementById("score");
 	if (standardiseWord(answer)==cur_answer) {
-		score++;
-		const score_span = document.getElementById("score");
-		score_span.textContent = "Score : "+score.toString();
-
+		score+=correct_answer_score;
 		button_pressed.style.animation="anim_vert 0.35s";
-		setTimeout(() => {
-			button_pressed.style.animation = "";
-		}, 350);
 	} else {
+		score+=incorrect_answer_score;
+		button_pressed.style.animation="anim_rouge 0.35s";
+
 		life--;
 		life_div.textContent="Life : "+life.toString();
 		if (life==0) {
 			show_history();
 		}
-		
-		button_pressed.style.animation="anim_rouge 0.35s";
-		setTimeout(() => {
-			button_pressed.style.animation = "";
-		}, 350);
 	}
-	nextWord();
+	score_span.textContent = "Score : "+score.toString();
+	setTimeout(() => {
+		button_pressed.style.animation = "";
+	}, 350);
+	
 
+	nextWord();
 }
 
 function shuffleArray(array) {
@@ -136,6 +141,7 @@ function standardiseWord(str) {
 
 function show_history() {
     const container_history = document.getElementById("container_history");
+	container_history.style.opacity=1;
     container_history.style.zIndex=3;
 }
 

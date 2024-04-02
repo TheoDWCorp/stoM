@@ -4,6 +4,7 @@ const props = defineProps(["history"]);
 function hide_history() {
     const container_history = document.getElementById("container_history");
     container_history.style.zIndex=-3;
+    container_history.style.opacity=0;
 }
 
 

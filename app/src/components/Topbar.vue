@@ -11,6 +11,7 @@ function switch_function(switchIsLeft) {
 
 function show_history() {
     const container_history = document.getElementById("container_history");
+    container_history.style.opacity=1;
     container_history.style.zIndex=3;
 }
 

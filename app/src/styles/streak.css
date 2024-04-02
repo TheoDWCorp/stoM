@@ -31,7 +31,7 @@
 }
 
 #FourProp, #Guess {
-    width: 80%;
+    width: 90%;
     height: auto;
     position: absolute;
     bottom: 15%;
@@ -41,17 +41,34 @@
 
 
 #score {
-    position: fixed;
-    top: 35px;
+    position: absolute;
     left: 50%;
     font-size: 3rem;
     transform: translate(-50%, -50%);
 }
 
 #life {
-    position: fixed;
-    top: calc(35px + 3rem);
+    position: absolute;
     left: 50%;
     font-size: 2rem;
     transform: translate(-50%, -50%);
+}
+
+
+@media (max-width:1200px){
+    #score {
+        top: 2.5rem;
+    }
+    #life {
+        top: 5.5rem;
+    }
+}
+
+@media (min-width:1200px){
+    #score {
+        top: 1.5rem;
+    }
+    #life {
+        top: 4.5rem;
+    }
 }
