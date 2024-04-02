@@ -42,8 +42,6 @@ async function register() {
 		<span>Birthdate</span>
 		<input type="date">
 		<button @click="register">Register</button>
-		<div id="wrapper_bottom_button">
-			<button @click="$router.push('/Login')">Login</button>
-		</div>
+		<button @click="$router.push('/Login')">Login</button>
 	</div>
 </template>

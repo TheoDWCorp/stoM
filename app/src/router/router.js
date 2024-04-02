@@ -38,7 +38,7 @@ router.beforeEach((to, from, next) => {
   const isLoggedIn = VueCookies.get('isLoggedIn') || Store.state.isLoggedIn; // Get the authentication state from a cookie
 
   if (requiresAuth && !isLoggedIn) {
-    next('/login'); // Redirect to the login page if not logged in
+    next('/'); // Redirect to the login page if not logged in
   } else {
     next(); // Otherwise, proceed to the requested route
   }

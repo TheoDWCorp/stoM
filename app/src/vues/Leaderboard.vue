@@ -14,10 +14,9 @@ async function getLeaderboard(leaderboard) {
 	try {
 		const response = await fetch('http://18.215.51.7/api/' + leaderboard + '/' + 100);
 		const leaderboardData = await response.json();
-        console.log(leaderboardData);
 		return leaderboardData;
 	} catch (error) {
-		console.error('Could not log in:', error);
+		console.error('Could not get the leaderboard:', error);
 	}
 }
 
