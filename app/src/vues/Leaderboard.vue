@@ -5,15 +5,17 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router'
 
 const route = useRoute();
-var source_path;
+let source_path;
 const leaderboard_guess = ref([]);
 const leaderboard_4prop = ref([]);
-
+let path_guess = 'getLeaderboardStreakGuess';
 
 async function getLeaderboard(leaderboard) {
 	try {
+        console.log('http://18.215.51.7/api/' + leaderboard + '/' + 100);
 		const response = await fetch('http://18.215.51.7/api/' + leaderboard + '/' + 100);
 		const leaderboardData = await response.json();
+        console.log(leaderboardData);
 		return leaderboardData;
 	} catch (error) {
 		console.error('Could not get the leaderboard:', error);
@@ -29,8 +31,8 @@ async function updateArrays(fourprop, guess) {
 
 
 function switch_function(switchIsLeft) {
-    const container_4prop = document.getElementById("container_4prop");
-    const container_guess = document.getElementById("container_guess");
+    const container_4prop = document.getElementById("container_leaderboard_4prop");
+    const container_guess = document.getElementById("container_leaderboard_guess");
     if (switchIsLeft) {
         container_4prop.style.opacity=1;
         container_guess.style.opacity=0;
@@ -45,11 +47,12 @@ function switch_function(switchIsLeft) {
 onMounted(() => {
     if (route.params.source == 'Streak') {
         source_path='/Streak';
-        updateArrays('getLeaderboardStreak4', 'getLeaderboardStreakGuess');
+        updateArrays('getLeaderboardStreak4', 'getLeaderbordStreakGuess');
     } else {
         source_path='/60sec';
         updateArrays('getLeaderboard604', 'getLeaderboard60Guess');
     }
+    console.log(leaderboard_4prop.value, leaderboard_guess.value);
 })
 
 
