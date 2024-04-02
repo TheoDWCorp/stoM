@@ -234,11 +234,14 @@ app.get('/api/getScore/:username', (req, res) => {
 });
 
 
+app.get('*', function (request, response){
+  //response.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+  response.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+});
 
 
-
-app.listen(3002, () => {
-  console.log('Server is running on port 3002');
+app.listen(80, () => {
+  console.log('Server is running on port 80');
 });
 
 

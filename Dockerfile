@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y sqlite3
 
 RUN npm install
 
-EXPOSE 3002
+EXPOSE 80
 
 RUN mkdir /app/db
 

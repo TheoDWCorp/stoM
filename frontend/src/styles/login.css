@@ -12,6 +12,7 @@
 #container_login > input, #container_login > div {
     margin-bottom: 20px;
     margin-top: 5px;
+    max-width: 80%;
 }
 
 

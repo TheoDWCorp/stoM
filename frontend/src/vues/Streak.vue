@@ -15,6 +15,9 @@ let cur_answer="";
 let score = 0;
 let life=3;
 let life_div;
+let flag_4prop=true;
+const correct_answer_score=2;
+const incorrect_answer_score=-1;
 const history= ref(null);
 history.value=[];
 
@@ -33,6 +36,7 @@ function setup_game() {
 function switch_function(switchIsLeft) {
 	const FourProp = document.getElementById("FourProp")
 	const Guess = document.getElementById("Guess")
+	flag_4prop=switchIsLeft;
 	if (switchIsLeft) {
 		FourProp.style.opacity=1;
 		FourProp.style.zIndex=1;
@@ -53,7 +57,7 @@ async function fetchWords() {
 		const wordsData = await response.json();
 		return wordsData;
 	} catch (error) {
-		console.error('Error fetching color names:', error);
+		console.error('Error fetching words:', error);
 		return [];
 	}
 }
@@ -63,8 +67,11 @@ async function updateWords() {
 	const wordsPromise = await fetchWords();
 	words = wordsPromise;
 	index_words=0;
-
-	nextWord();
+	if (words.length==0) {
+		setTimeout(() => {
+			updateWords();
+		}, 5000);
+	} else nextWord();
 }
 
 
@@ -82,7 +89,7 @@ function nextWord() {
 	shuffleArray(cur_words);
 	const fourProp_childs = document.getElementById("container_fourProp").children;
 	for (let i=0; i<4; i++) {
-		fourProp_childs[i].children[0].textContent=standardiseWord(cur_words[i]);
+		fourProp_childs[i].children[0].textContent=cur_words[i];
 	}
 	index_words++;
 }
@@ -90,35 +97,55 @@ function nextWord() {
 
 
 function guess_function(event, answer) {
-	history.value.push(cur_answer + " " + answer);
+	if (index_words==0) return;
+	const word_to_guess = document.querySelector("#container_word_to_guess > span");
+	if (flag_4prop) {
+		let temp =[word_to_guess.textContent];
+		const fourProp_childs = document.getElementById("container_fourProp").children;
+		for (let i=0; i<4; i++) {
+			if (standardiseWord(fourProp_childs[i].children[0].textContent)==cur_answer) {
+				temp.push([fourProp_childs[i].children[0].textContent, 'vert']);
+			} else if (standardiseWord(fourProp_childs[i].children[0].textContent)==standardiseWord(answer)) {
+				temp.push([fourProp_childs[i].children[0].textContent, 'rouge']);
+			} else {
+				temp.push([fourProp_childs[i].children[0].textContent, 'neutre']);
+			}
+		}
+		history.value.push(temp);
+	}
 	let button_pressed = event.target;
 	if (button_pressed.nodeName=="DIV") {
 		button_pressed=button_pressed.children[0];
 	}
 	if (life==0) setup_game();
+	
+	const score_span = document.getElementById("score");
 	if (standardiseWord(answer)==cur_answer) {
-		score++;
-		const score_span = document.getElementById("score");
-		score_span.textContent = "Score : "+score.toString();
-
+		if (!flag_4prop) {
+			history.value.push([word_to_guess.textContent,[cur_answer, 'vert']]); 
+		}
+		score+=correct_answer_score;
 		button_pressed.style.animation="anim_vert 0.35s";
-		setTimeout(() => {
-			button_pressed.style.animation = "";
-		}, 350);
 	} else {
+		if (!flag_4prop) {
+			history.value.push([word_to_guess.textContent,[cur_answer, 'vert'],[answer, 'rouge']]);
+		}
+		score+=incorrect_answer_score;
+		button_pressed.style.animation="anim_rouge 0.35s";
+
 		life--;
 		life_div.textContent="Life : "+life.toString();
 		if (life==0) {
 			show_history();
 		}
-		
-		button_pressed.style.animation="anim_rouge 0.35s";
-		setTimeout(() => {
-			button_pressed.style.animation = "";
-		}, 350);
 	}
+	score_span.textContent = "Score : "+score.toString();
+	setTimeout(() => {
+		button_pressed.style.animation = "";
+	}, 350);
+	
+	console.log(history.value);
 	nextWord();
-
 }
 
 function shuffleArray(array) {
@@ -136,6 +163,7 @@ function standardiseWord(str) {
 
 function show_history() {
     const container_history = document.getElementById("container_history");
+	container_history.style.opacity=1;
     container_history.style.zIndex=3;
 }
 

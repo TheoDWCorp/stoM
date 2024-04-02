@@ -12,7 +12,7 @@ function guess_function(event) {
 <template>
     <div>
         <div id="container_guess">
-            <input type="text" placeholder="Answer" @keypress="guess_function">
+            <input tabindex="-1" type="text" placeholder="Answer" @keypress="guess_function">
         </div>
     </div>
 </template>

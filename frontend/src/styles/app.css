@@ -71,3 +71,29 @@ button:active {
 input {
   text-align: center;
 }
+
+
+
+#background_non_animated {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background:
+        radial-gradient(50% 50% at 100% 0,#faeed1 0%  5% ,#ded0b6 6%  15%,#faeed1 16% 25%,#ded0b6 26% 35%,#faeed1 36% 45%,
+        #ded0b6 46% 55%,#faeed1 56% 65%,#ded0b6 66% 75%,#faeed1 76% 85%,#ded0b6 86% 95%,
+        #0000 96%),
+        radial-gradient(50% 50% at 0 100%,#faeed1 0%  5% ,#ded0b6 6%  15%,#faeed1 16% 25%,#ded0b6 26% 35%,#faeed1 36% 45%,
+        #ded0b6 46% 55%,#faeed1 56% 65%,#ded0b6 66% 75%,#faeed1 76% 85%,#ded0b6 86% 95%,
+        #0000 96%),
+        radial-gradient(50% 50%,#faeed1 0%  5% ,#ded0b6 6%  15%,#faeed1 16% 25%,#ded0b6 26% 35%,#faeed1 36% 45%,
+        #ded0b6 46% 55%,#faeed1 56% 65%,#ded0b6 66% 75%,#faeed1 76% 85%,#ded0b6 86% 95%,
+        #0000 96%),
+        radial-gradient(50% 50%,#faeed1 0%  5% ,#ded0b6 6%  15%,#faeed1 16% 25%,#ded0b6 26% 35%,#faeed1 36% 45%,
+        #ded0b6 46% 55%,#faeed1 56% 65%,#ded0b6 66% 75%,#faeed1 76% 85%,#ded0b6 86% 95%,
+        #0000 96%) 15px 15px;
+  background-size: 30px 30px;
+  background-color: #faeed1;
+}

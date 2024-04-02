@@ -11,7 +11,7 @@ function guess_function(event) {
     <div>
         <div id="container_fourProp">
             <div v-for="index in 4" @click="guess_function" class="fourProp_wrapper">
-                <button></button>
+                <button tabindex="-1"></button>
             </div>
         </div>
     </div>

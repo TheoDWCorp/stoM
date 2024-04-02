@@ -4,6 +4,7 @@ const props = defineProps(["history"]);
 function hide_history() {
     const container_history = document.getElementById("container_history");
     container_history.style.zIndex=-3;
+    container_history.style.opacity=0;
 }
 
 
@@ -14,7 +15,10 @@ function hide_history() {
         <div id="container_history">
             <button @click="hide_history">close</button>
             <div id="wrapper_history">
-                <span v-for="(item, index) in props.history" :key="index">{{ item }}</span>
+                <div v-if="props.history.length!=0" v-for="(item, index) in props.history" :key="index">
+                    <span>{{ item[0] }}</span>
+                    <span v-for="index_item in item.length-1" :class="item[index_item][1]" >{{ item[index_item][0] }}</span>
+                </div>
             </div>
         </div>
     </div>
