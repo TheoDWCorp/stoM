@@ -26,6 +26,7 @@
     border-radius: 40px;
     font-family: 'gfont_Poppins_ExtraBoldItalic', sans-serif;
     font-size: 3rem;
+    user-select: none;
 }
 
 

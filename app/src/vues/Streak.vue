@@ -15,6 +15,7 @@ let cur_answer="";
 let score = 0;
 let life=3;
 let life_div;
+let flag_4prop=true;
 const correct_answer_score=2;
 const incorrect_answer_score=-1;
 const history= ref(null);
@@ -35,6 +36,7 @@ function setup_game() {
 function switch_function(switchIsLeft) {
 	const FourProp = document.getElementById("FourProp")
 	const Guess = document.getElementById("Guess")
+	flag_4prop=switchIsLeft;
 	if (switchIsLeft) {
 		FourProp.style.opacity=1;
 		FourProp.style.zIndex=1;
@@ -87,7 +89,7 @@ function nextWord() {
 	shuffleArray(cur_words);
 	const fourProp_childs = document.getElementById("container_fourProp").children;
 	for (let i=0; i<4; i++) {
-		fourProp_childs[i].children[0].textContent=standardiseWord(cur_words[i]);
+		fourProp_childs[i].children[0].textContent=cur_words[i];
 	}
 	index_words++;
 }
@@ -96,7 +98,21 @@ function nextWord() {
 
 function guess_function(event, answer) {
 	if (index_words==0) return;
-	history.value.push(cur_answer + " " + answer);
+	const word_to_guess = document.querySelector("#container_word_to_guess > span");
+	if (flag_4prop) {
+		let temp =[word_to_guess.textContent];
+		const fourProp_childs = document.getElementById("container_fourProp").children;
+		for (let i=0; i<4; i++) {
+			if (standardiseWord(fourProp_childs[i].children[0].textContent)==cur_answer) {
+				temp.push([fourProp_childs[i].children[0].textContent, 'vert']);
+			} else if (standardiseWord(fourProp_childs[i].children[0].textContent)==standardiseWord(answer)) {
+				temp.push([fourProp_childs[i].children[0].textContent, 'rouge']);
+			} else {
+				temp.push([fourProp_childs[i].children[0].textContent, 'neutre']);
+			}
+		}
+		history.value.push(temp);
+	}
 	let button_pressed = event.target;
 	if (button_pressed.nodeName=="DIV") {
 		button_pressed=button_pressed.children[0];
@@ -105,9 +121,15 @@ function guess_function(event, answer) {
 	
 	const score_span = document.getElementById("score");
 	if (standardiseWord(answer)==cur_answer) {
+		if (!flag_4prop) {
+			history.value.push([word_to_guess.textContent,[cur_answer, 'vert']]); 
+		}
 		score+=correct_answer_score;
 		button_pressed.style.animation="anim_vert 0.35s";
 	} else {
+		if (!flag_4prop) {
+			history.value.push([word_to_guess.textContent,[cur_answer, 'vert'],[answer, 'rouge']]);
+		}
 		score+=incorrect_answer_score;
 		button_pressed.style.animation="anim_rouge 0.35s";
 
@@ -122,7 +144,7 @@ function guess_function(event, answer) {
 		button_pressed.style.animation = "";
 	}, 350);
 	
-
+	console.log(history.value);
 	nextWord();
 }
 

@@ -37,10 +37,22 @@
     overflow: scroll;
 }
 
-#wrapper_history > span {
+#wrapper_history > div {
     width: 75%;
-    background-color: #ab9973;
     border-radius: 5px;
     box-sizing: border-box;
     padding: 10px 0 10px 0;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+
+.vert {
+    background-color: green;
+}
+
+
+.rouge {
+    background-color: red;
 }
