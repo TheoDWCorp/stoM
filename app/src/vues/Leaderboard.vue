@@ -12,10 +12,8 @@ let path_guess = 'getLeaderboardStreakGuess';
 
 async function getLeaderboard(leaderboard) {
 	try {
-        console.log('http://18.215.51.7/api/' + leaderboard + '/' + 100);
 		const response = await fetch('http://18.215.51.7/api/' + leaderboard + '/' + 100);
 		const leaderboardData = await response.json();
-        console.log(leaderboardData);
 		return leaderboardData;
 	} catch (error) {
 		console.error('Could not get the leaderboard:', error);
@@ -52,7 +50,6 @@ onMounted(() => {
         source_path='/60sec';
         updateArrays('getLeaderboard604', 'getLeaderboard60Guess');
     }
-    console.log(leaderboard_4prop.value, leaderboard_guess.value);
 })
 
 
