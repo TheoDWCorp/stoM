@@ -62,12 +62,12 @@ onMounted(() => {
 	<div id="container_leaderboard">
         <Switch @switch_function="switch_function" id="leaderboard_top" left_str="4 propositions" right_str="Guess"></Switch>
         <div id="leaderboard_body">
-            <div id="container_4prop">
+            <div id="container_leaderboard_4prop">
                 <div v-for="(player, index) in leaderboard_4prop" :key="index">
                     <span v-for="item in player">{{ item }}</span>
                 </div>
             </div>
-            <div id="container_guess">
+            <div id="container_leaderboard_guess">
                 <div v-for="(player, index) in leaderboard_guess" :key="index">
                     <span v-for="item in player">{{ item }}</span>
                 </div>

@@ -17,6 +17,7 @@
     top: 10px;
     right: 10px;
     font-size: 1.5rem;
+    z-index: 2;
 }
 
 
@@ -57,7 +58,7 @@
 }
 
 
-#container_4prop, #container_guess {
+#container_leaderboard_4prop, #container_leaderboard_guess {
     position: absolute;
     top: 0;
     left: 0;
@@ -65,13 +66,13 @@
     width: 100%;
 }
 
-#container_4prop > div, #container_guess > div {
+#container_leaderboard_4prop > div, #container_leaderboard_guess > div {
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
 
-#container_guess {
+#container_leaderboard_guess {
     opacity: 0;
 }
