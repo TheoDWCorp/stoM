@@ -6,7 +6,7 @@ const emit = defineEmits(['switch_function'])
 var switchIsLeft = true;
 
 function anim_green() {
-    green_anim_div = document.getElementById("green_anim_div");
+    const green_anim_div = document.getElementById("green_anim_div");
     if (switchIsLeft) {
         green_anim_div.style.left="50%";
     } else {

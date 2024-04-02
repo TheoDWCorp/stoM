@@ -13,6 +13,7 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
+  user-select: none;
 
   color: #0f0f0f;
 
@@ -52,6 +53,7 @@ button, span, input {
   line-height: 40px;
   font-weight: 400;
   box-sizing: border-box;
+  user-select: none;
   z-index: 1;
 }
 

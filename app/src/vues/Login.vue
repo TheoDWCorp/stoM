@@ -9,6 +9,7 @@ const router = useRouter();
 const store = useStore();
 
 async function connexion() {
+	router.push('./Menu');
 	const pseudo = document.getElementById("pseudo").value;
 	const password = document.querySelector("#login_password > input").value;
 	if (pseudo==""||password=="") return;
