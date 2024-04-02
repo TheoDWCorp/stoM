@@ -45,7 +45,7 @@ function switch_function(switchIsLeft) {
 onMounted(() => {
     if (route.params.source == 'Streak') {
         source_path='/Streak';
-        updateArrays('getLeaderboardStreak4', 'getLeaderbordStreakGuess');
+        updateArrays('getLeaderboardStreak4', 'getLeaderboardStreakGuess');
     } else {
         source_path='/60sec';
         updateArrays('getLeaderboard604', 'getLeaderboard60Guess');

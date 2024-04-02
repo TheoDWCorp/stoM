@@ -46,9 +46,10 @@
 
 
 #container_switch > button {
+    position: relative;
     font-size: 24px;
     padding: 0.5rem;
-    z-index: 3;
+    z-index: 30 !important;
     box-shadow: none !important;
 }
 
