@@ -59,7 +59,7 @@
     }
 
     #container_word_to_guess {
-        position: fixed;
+        position: absolute;
         top: 55%;
         left: 50%;
         transform: translate(-50%, -50%);

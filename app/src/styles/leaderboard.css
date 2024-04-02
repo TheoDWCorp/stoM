@@ -5,7 +5,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     height: 80%;
-    width: 75%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,4 +31,25 @@
     border-radius: 20px;
     background-color: #fef6e3;
     border: 5px solid #ab9973;
+}
+
+
+
+@media (min-width:1200px){
+    #container_leaderboard {
+        width: 75%;
+    }
+    #leaderboard_top {
+        width: 90%;
+    }
+}
+
+
+@media (max-width:1200px){
+    #container_leaderboard {
+        width: 90%;
+    }
+    #leaderboard_top {
+        width: 100%;
+    }
 }

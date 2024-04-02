@@ -84,7 +84,7 @@ function switch_function(switchIsLeft) {
 
 async function fetchWords() {
 	try {
-		const response = await fetch('https://raw.githubusercontent.com/theoFromArdeche/temp/main/test.json');
+		const response = await fetch('http://18.215.51.7/api/getWords/50');
 		const wordsData = await response.json();
 		return wordsData;
 	} catch (error) {
