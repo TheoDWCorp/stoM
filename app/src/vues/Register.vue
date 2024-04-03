@@ -44,4 +44,4 @@ async function register() {
 		<button @click="register">Register</button>
 		<button @click="$router.push('/Login')">Login</button>
 	</div>
-</template>
+</template>	

@@ -133,6 +133,19 @@ function guess_function(event, answer) {
 	if (index_words==0) return;
 	const real_time=60-Date.now()/1000+starting_time;
 	if (real_time<=0&&time[0]!=-1) return;
+	
+	let button_pressed = event.target;
+	if (button_pressed.nodeName=="DIV") {
+		button_pressed=button_pressed.children[0];
+	}
+	if (time[0]==-1) {
+		if (index_words!=1) setup_game();
+		time = [6,0,0,0];
+		starting_time=Date.now()/1000;
+		timerInterval = setInterval(updateTimer, 10);
+		history.value=[];
+	}
+
 	const word_to_guess = document.querySelector("#container_word_to_guess > span");
 	if (flag_4prop) {
 		let temp =[word_to_guess.textContent];
@@ -147,17 +160,6 @@ function guess_function(event, answer) {
 			}
 		}
 		history.value.push(temp);
-	}
-	let button_pressed = event.target;
-	if (button_pressed.nodeName=="DIV") {
-		button_pressed=button_pressed.children[0];
-	}
-	if (time[0]==-1) {
-		if (index_words!=1) setup_game();
-		time = [6,0,0,0];
-		starting_time=Date.now()/1000;
-		timerInterval = setInterval(updateTimer, 10);
-		history.value=[];
 	}
 
 	const score_span = document.getElementById("score");
@@ -179,7 +181,6 @@ function guess_function(event, answer) {
 		button_pressed.style.animation = "";
 	}, 350);
 
-	
 	nextWord();
 }
 
