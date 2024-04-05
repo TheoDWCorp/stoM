@@ -18,6 +18,7 @@
     border: none;
     background-color: transparent;
     border-radius: 5px 0 0 5px;
+    
 }
 
 
@@ -45,8 +46,10 @@
 
 
 #container_switch > button {
+    position: relative;
     font-size: 24px;
     padding: 0.5rem;
+    box-shadow: none !important;
 }
 
 #container_switch > button:hover {

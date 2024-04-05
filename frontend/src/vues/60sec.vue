@@ -5,10 +5,13 @@ import FourProp from '../components/FourProp.vue';
 import Guess from '../components/Guess.vue'
 import History from '../components/History.vue';
 import '../styles/60sec.css';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex';
 
 const router = useRouter();
+const store = useStore();
+const pseudo = computed(() => store.state.pseudo);
 
 
 let words = [];
@@ -84,7 +87,7 @@ function switch_function(switchIsLeft) {
 
 async function fetchWords() {
 	try {
-		const response = await fetch('https://raw.githubusercontent.com/theoFromArdeche/temp/main/test.json');
+		const response = await fetch('http://18.215.51.7/api/getWords/50');
 		const wordsData = await response.json();
 		return wordsData;
 	} catch (error) {
@@ -130,6 +133,19 @@ function guess_function(event, answer) {
 	if (index_words==0) return;
 	const real_time=60-Date.now()/1000+starting_time;
 	if (real_time<=0&&time[0]!=-1) return;
+	
+	let button_pressed = event.target;
+	if (button_pressed.nodeName=="DIV") {
+		button_pressed=button_pressed.children[0];
+	}
+	if (time[0]==-1) {
+		if (index_words!=1) setup_game();
+		time = [6,0,0,0];
+		starting_time=Date.now()/1000;
+		timerInterval = setInterval(updateTimer, 10);
+		history.value=[];
+	}
+
 	const word_to_guess = document.querySelector("#container_word_to_guess > span");
 	if (flag_4prop) {
 		let temp =[word_to_guess.textContent];
@@ -144,17 +160,6 @@ function guess_function(event, answer) {
 			}
 		}
 		history.value.push(temp);
-	}
-	let button_pressed = event.target;
-	if (button_pressed.nodeName=="DIV") {
-		button_pressed=button_pressed.children[0];
-	}
-	if (time[0]==-1) {
-		if (index_words!=1) setup_game();
-		time = [6,0,0,0];
-		starting_time=Date.now()/1000;
-		timerInterval = setInterval(updateTimer, 10);
-		history.value=[];
 	}
 
 	const score_span = document.getElementById("score");
@@ -176,7 +181,6 @@ function guess_function(event, answer) {
 		button_pressed.style.animation = "";
 	}, 350);
 
-	
 	nextWord();
 }
 
@@ -210,6 +214,7 @@ function updateTimer() {
 		times_up_span.style.opacity=1;
 		time=[-1,-1,-1,-1];
 		show_history();
+		updateScore();
 		for (let i=0; i<index_bulles_anim; i++) {
 			bulles_anim[i].style.animation="";
 		}
@@ -230,6 +235,18 @@ function updateTimer() {
 	timer_div.children[1].textContent=time[1];
 	timer_div.children[3].textContent=time[2];
 	timer_div.children[4].textContent=time[3];
+}
+
+
+
+async function updateScore() {
+	let path="updateScore60Guess";
+	if (flag_4prop) path="updateScore604";
+	try {
+		const response = await fetch('http://18.215.51.7/api/'+ path + '/' + pseudo.value + '/' + score.toString());
+	} catch (error) {
+		console.error('Error updating score:', error);
+	}
 }
 
 

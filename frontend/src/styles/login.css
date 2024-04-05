@@ -16,7 +16,7 @@
 }
 
 
-#wrapper_register_button {
+#wrapper_bottom_button {
     position: absolute;
     z-index: 1;
     bottom: 20px;

@@ -31,10 +31,21 @@ body {
   position: relative;
 }
 
-#app {
-  width: 100vw;
-  height: 100vh;
+
+@media (max-height:550px) {
+	#app {
+		width: 100vw;
+		height: 550px;
+	  }
 }
+
+@media (min-height:550px) {
+	#app {
+		width: 100vw;
+		height: 100vh;
+	  }
+}
+
 
 button, span, input {
   font-family: 'gfont_Poppins_Medium', sans-serif;
@@ -97,3 +108,8 @@ input {
   background-size: 30px 30px;
   background-color: #faeed1;
 }
+
+
+
+
+

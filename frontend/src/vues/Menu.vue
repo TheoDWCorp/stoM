@@ -1,21 +1,25 @@
 <script setup>
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+
+const store = useStore();
+const router  = useRouter();
 
 
-function pop_background() {
-	console.log("TODO pop background");
+function disconnect() {
+	store.commit('logout');
+	router.push('/Login');
 }
-
-
 
 </script>
 
 <template>
 	<div id="container">
 		<div id="button_wrapper">
-			<button @click="$router.push('/60sec'); pop_background()">60 secondes</button>
-			<button @click="$router.push('/Streak'); pop_background()">Streak</button>
+			<button @click="$router.push('/60sec')">60 secondes</button>
+			<button @click="$router.push('/Streak')">Streak</button>
 		</div>
-		<button id="disconnect_button" @click="$router.push('/Login')">Disconnect</button>
+		<button id="disconnect_button" @click="disconnect">Disconnect</button>
 	</div>
 </template>
 

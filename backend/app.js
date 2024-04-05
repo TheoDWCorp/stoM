@@ -1,7 +1,11 @@
 const express = require('express');
-const { cp } = require('fs');
+const fs = require('fs');
+const https=require('https')
+const bcrypt = require('bcrypt');
 const path = require('path');
 const app = express();
+
+
 
 const sqlite3 = require('sqlite3');
 const DBSOURCE = "/app/db/database.sqlite";
@@ -58,10 +62,10 @@ app.get('/api/getWords/:N', (req, res) => {
 
 
 app.get('/api/login/:username/:password', (req, res) => {
-  let sql = "SELECT COUNT(*) as nbr FROM account WHERE username = ? AND password = ?";
+  let sql = "SELECT COUNT(*) as nbr FROM account WHERE username = ?";
   let username = req.params.username;
   let password = req.params.password;
-  let params = [username, password];
+  let params = [username];
   db.all(sql,params, (err, rows) => {
     if (err) {
       res.json(false);
@@ -71,15 +75,31 @@ app.get('/api/login/:username/:password', (req, res) => {
         res.json(false);
       }
       else{
-          res.json(true);
+          db.all("SELECT password FROM account WHERE username = ?", [username], (err, rows) => {
+            if (err) {
+              res.json(false);
+            }
+            else{
+                if (bcrypt.compareSync(password, rows[0]["password"])) {
+                  res.json(true);
+                }
+                else{
+                  res.json(false);
+                }
         }
-    }
-  });
-});
+    });
+  };
+}})});
 
+function hashPassword(password) {
+  const salt = bcrypt.genSaltSync(10);
+  password = bcrypt.hashSync(password, salt);
+  return password;
+}
 app.get('/api/register/:username/:password', (req, res) => {
   let username = req.params.username;
   let password = req.params.password;
+  password = hashPassword(password);
 
   // Vérifier si le nom d'utilisateur existe déjà
   db.get("SELECT COUNT(*) AS count FROM account WHERE username = ?", [username], (err, row) => {
@@ -110,7 +130,7 @@ app.get('/api/register/:username/:password', (req, res) => {
 });
 
 
-app.get('/api/getLeaderbordStreak4/:N', (req, res) => {
+app.get('/api/getLeaderboardStreak4/:N', (req, res) => {
   let sql = "SELECT username, score_streak_4 FROM account ORDER BY score_streak_4 DESC LIMIT ?";
   let N = req.params.N;
   let params = [N];
@@ -123,7 +143,7 @@ app.get('/api/getLeaderbordStreak4/:N', (req, res) => {
   });
 });
 
-app.get('/api/getLeaderbordStreakGuess/:N', (req, res) => {
+app.get('/api/getLeaderboardStreakGuess/:N', (req, res) => {
   let sql = "SELECT username, score_streak_guess FROM account ORDER BY score_streak_guess DESC LIMIT ?";
   let N = req.params.N;
   let params = [N];
@@ -136,7 +156,7 @@ app.get('/api/getLeaderbordStreakGuess/:N', (req, res) => {
   });
 });
 
-app.get('/api/getLeaderbord60Guess/:N', (req, res) => {
+app.get('/api/getLeaderboard60Guess/:N', (req, res) => {
   let sql = "SELECT username, score_60_guess FROM account ORDER BY score_60_guess DESC LIMIT ?";
   let N = req.params.N;
   let params = [N];
@@ -149,7 +169,7 @@ app.get('/api/getLeaderbord60Guess/:N', (req, res) => {
   });
 });
 
-app.get('/api/getLeaderbord604/:N', (req, res) => {
+app.get('/api/getLeaderboard604/:N', (req, res) => {
   let sql = "SELECT username, score_60_4 FROM account ORDER BY score_60_4 DESC LIMIT ?";
   let N = req.params.N;
   let params = [N];
@@ -165,11 +185,11 @@ app.get('/api/getLeaderbord604/:N', (req, res) => {
 
 
 app.get('/api/updateScore604/:username/:score', (req, res) => {
-  let sql = "UPDATE account SET score_60_4 = ? WHERE username = ?";
+  let sql = "UPDATE account SET score_60_4 = ? WHERE username = ? AND score_60_4 < ?";
   let username = req.params.username;
   let elo = req.params.score;
 
-  let params = [elo, username];
+  let params = [elo, username,elo];
   db.run(sql,params, (err) => {
     if (err) {
       res.status(400).json({"error":err.message});
@@ -179,11 +199,11 @@ app.get('/api/updateScore604/:username/:score', (req, res) => {
 });
 
 app.get('/api/updateScore60Guess/:username/:score', (req, res) => {
-  let sql = "UPDATE account SET score_60_guess = ? WHERE username = ?";
+  let sql = "UPDATE account SET score_60_guess = ? WHERE username = ? AND score_60_guess < ?";
   let username = req.params.username;
   let elo = req.params.score;
 
-  let params = [elo, username];
+  let params = [elo, username,elo];
   db.run(sql,params, (err) => {
     if (err) {
       res.status(400).json({"error":err.message});
@@ -193,11 +213,11 @@ app.get('/api/updateScore60Guess/:username/:score', (req, res) => {
 });
 
 app.get('/api/updateScoreStreakGuess/:username/:score', (req, res) => {
-  let sql = "UPDATE account SET score_streak_guess = ? WHERE username = ?";
+  let sql = "UPDATE account SET score_streak_guess = ? WHERE username = ? AND score_streak_guess < ?";
   let username = req.params.username;
   let elo = req.params.score;
 
-  let params = [elo, username];
+  let params = [elo, username,elo];
   db.run(sql,params, (err) => {
     if (err) {
       res.status(400).json({"error":err.message});
@@ -207,11 +227,11 @@ app.get('/api/updateScoreStreakGuess/:username/:score', (req, res) => {
 });
 
 app.get('/api/updateScoreStreak4/:username/:score', (req, res) => {
-  let sql = "UPDATE account SET score_streak_4 = ? WHERE username = ?";
+  let sql = "UPDATE account SET score_streak_4 = ? WHERE username = ? AND score_streak_4 < ?";
   let username = req.params.username;
   let elo = req.params.score;
 
-  let params = [elo, username];
+  let params = [elo, username,elo];
   db.run(sql,params, (err) => {
     if (err) {
       res.status(400).json({"error":err.message});
