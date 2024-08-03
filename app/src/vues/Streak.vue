@@ -57,7 +57,7 @@ function switch_function(switchIsLeft) {
 
 async function fetchWords() {
 	try {
-		const response = await fetch('http://18.215.51.7/api/getWords/50');
+		const response = await fetch('https://github.com/TheoDWCorp/stoM/tree/main');
 		const wordsData = await response.json();
 		return wordsData;
 	} catch (error) {

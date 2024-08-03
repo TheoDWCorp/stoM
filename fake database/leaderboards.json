@@ -1,0 +1,22 @@
+[
+	{"username": "theo", "score": 100},
+	{"username": "alex", "score": 95},
+	{"username": "mike", "score": 90},
+	{"username": "jane", "score": 85},
+	{"username": "emma", "score": 80},
+	{"username": "luke", "score": 75},
+	{"username": "sara", "score": 70},
+	{"username": "dave", "score": 65},
+	{"username": "nina", "score": 60},
+	{"username": "john", "score": 55},
+	{"username": "paul", "score": 50},
+	{"username": "zoe", "score": 45},
+	{"username": "ryan", "score": 40},
+	{"username": "anna", "score": 35},
+	{"username": "mark", "score": 30},
+	{"username": "kate", "score": 25},
+	{"username": "nick", "score": 20},
+	{"username": "amy", "score": 15},
+	{"username": "josh", "score": 10},
+	{"username": "liz", "score": 5}
+]

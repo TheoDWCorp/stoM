@@ -17,7 +17,7 @@ const best_score_guess = ref([]);
 
 async function getLeaderboard(leaderboard) {
 	try {
-		const response = await fetch('http://18.215.51.7/api/' + leaderboard + '/' + 100);
+		const response = await fetch('https://github.com/TheoDWCorp/stoM/tree/main');
 		const leaderboardData = await response.json();
 		return leaderboardData;
 	} catch (error) {
@@ -36,8 +36,8 @@ async function updateArrays(fourprop, guess, flagStreak) {
         if (leaderboard_4prop.value[i].username==pseudo.value) {
             best_score_4prop.value.push(i+1);
             best_score_4prop.value.push(pseudo.value+" (vous)");
-            if (flagStreak) best_score_4prop.value.push(leaderboard_4prop.value[i].score_streak_4);
-            else best_score_4prop.value.push(leaderboard_4prop.value[i].score_60_4);
+            if (flagStreak) best_score_4prop.value.push(leaderboard_4prop.value[i].score);
+            else best_score_4prop.value.push(leaderboard_4prop.value[i].score);
             break;
         }
     }
@@ -46,8 +46,8 @@ async function updateArrays(fourprop, guess, flagStreak) {
         if (leaderboard_guess.value[i].username==pseudo.value) {
             best_score_guess.value.push(i+1);
             best_score_guess.value.push(pseudo.value+" (vous)");
-            if (flagStreak) best_score_guess.value.push(leaderboard_guess.value[i].score_streak_guess);
-            else best_score_guess.value.push(leaderboard_guess.value[i].score_60_guess);
+            if (flagStreak) best_score_guess.value.push(leaderboard_guess.value[i].score);
+            else best_score_guess.value.push(leaderboard_guess.value[i].score);
             break;
         }
     }

@@ -33,6 +33,7 @@ const router = createRouter({
   ],
 });
 
+/*
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const isLoggedIn = VueCookies.get('isLoggedIn') || Store.state.isLoggedIn; // Get the authentication state from a cookie
@@ -43,5 +44,6 @@ router.beforeEach((to, from, next) => {
     next(); // Otherwise, proceed to the requested route
   }
 });
+*/
 
 export default router;

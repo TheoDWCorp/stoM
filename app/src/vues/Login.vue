@@ -12,6 +12,8 @@ async function connexion() {
 	const pseudo = document.getElementById("pseudo").value;
 	const password = document.querySelector("#login_password > input").value;
 	if (pseudo==""||password=="") return;
+
+	/*
 	try {
 		const response = await fetch('http://18.215.51.7/api/login/' + pseudo + '/' + password);
 		const loginData = await response.json();
@@ -22,6 +24,10 @@ async function connexion() {
 	} catch (error) {
 		console.error('Could not log in:', error);
 	}
+	*/
+
+	store.commit('login', pseudo);
+	router.push('./Menu');
 }
 
 
