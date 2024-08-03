@@ -87,8 +87,9 @@ function switch_function(switchIsLeft) {
 
 async function fetchWords() {
 	try {
-		const response = await fetch('https://github.com/TheoDWCorp/stoM/tree/main');
+		const response = await fetch('https://raw.githubusercontent.com/TheoDWCorp/stoM/main/fake%20database/data.json');
 		const wordsData = await response.json();
+		wordsData.sort(() => Math.random() - 0.5); // shuffle (usefull if the fake database is used)
 		return wordsData;
 	} catch (error) {
 		console.error('Error fetching words:', error);

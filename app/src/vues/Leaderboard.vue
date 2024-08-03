@@ -17,7 +17,7 @@ const best_score_guess = ref([]);
 
 async function getLeaderboard(leaderboard) {
 	try {
-		const response = await fetch('https://github.com/TheoDWCorp/stoM/tree/main');
+		const response = await fetch('https://raw.githubusercontent.com/TheoDWCorp/stoM/main/fake%20database/leaderboards.json');
 		const leaderboardData = await response.json();
 		return leaderboardData;
 	} catch (error) {
