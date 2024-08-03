@@ -142,7 +142,7 @@ function guess_function(event, answer) {
 		life_div.textContent="Life : "+life.toString();
 		if (life==0) {
 			show_history();
-			updateScore();
+			//updateScore();
 		}
 	}
 	score_span.textContent = "Score : "+score.toString();

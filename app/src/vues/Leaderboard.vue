@@ -17,7 +17,7 @@ const best_score_guess = ref([]);
 
 async function getLeaderboard(leaderboard) {
 	try {
-		const response = await fetch('https://raw.githubusercontent.com/TheoDWCorp/stoM/main/fake%20database/leaderboards.json');
+		const response = await fetch(`https://raw.githubusercontent.com/TheoDWCorp/stoM/main/fake%20database/${leaderboard}.json`);
 		const leaderboardData = await response.json();
 		return leaderboardData;
 	} catch (error) {
@@ -71,10 +71,10 @@ function switch_function(switchIsLeft) {
 onMounted(() => {
     if (route.params.source == 'Streak') {
         source_path='/Streak';
-        updateArrays('getLeaderboardStreak4', 'getLeaderboardStreakGuess', true);
+        updateArrays('leaderboardStreak4', 'leaderboardStreakGuess', true);
     } else {
         source_path='/60sec';
-        updateArrays('getLeaderboard604', 'getLeaderboard60Guess');
+        updateArrays('leaderboard604', 'leaderboard60Guess');
     }   
 })
 

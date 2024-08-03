@@ -215,7 +215,7 @@ function updateTimer() {
 		times_up_span.style.opacity=1;
 		time=[-1,-1,-1,-1];
 		show_history();
-		updateScore();
+		//updateScore();
 		for (let i=0; i<index_bulles_anim; i++) {
 			bulles_anim[i].style.animation="";
 		}
